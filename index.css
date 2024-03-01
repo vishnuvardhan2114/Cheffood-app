@@ -1,0 +1,157 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  border: 1px solid hsla(0, 0%, 8%, 0.803);
+}
+.logo {
+  width: 100px;
+  height: 100px;
+}
+.nav-items > ul {
+  display: flex;
+  font-size: 18px;
+  list-style-type: none;
+}
+.nav-items > ul > li {
+  padding: 10px;
+  margin: 10px;
+}
+.filter {
+  padding: 7px;
+  border-radius: 3px;
+}
+.card-container {
+  width: 250px;
+  background-color: #f0f0f0;
+  padding: 7px;
+  margin: 12px;
+  border-radius: 5px;
+}
+.card-container:hover {
+  cursor: pointer;
+  border: 1px solid hsla(0, 0%, 8%, 0.803);
+  box-shadow: hsl(0, 100%, 34%);
+}
+.card-icon {
+  width: 250px;
+  height: 140px;
+}
+.search {
+  padding: 20px 20px;
+}
+.cards {
+  display: flex;
+  flex-wrap: wrap;
+}
+.footer {
+  display: flex;
+  flex-flow: row wrap;
+  padding: 20px 20px 10px 20px;
+  color: #2f2f2f;
+  background-color: #fff;
+  border-top: 1px solid #e5e5e5;
+}
+
+.footer > * {
+  flex: 1 100%;
+}
+.footer-address {
+  margin-right: 1.25em;
+}
+.footer-address h2 {
+  margin-top: 1.3em;
+  font-size: 15px;
+  font-weight: 400;
+}
+.footer-nal {
+  font-weight: 400;
+  font-size: 15px;
+  display: flex;
+  flex-flow: row wrap;
+}
+.footer address {
+  font-style: normal;
+  color: #999;
+}
+.footer-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 36px;
+  max-width: max-content;
+  background-color: rgb(33, 33, 33, 0.07);
+  border-radius: 100px;
+  color: #2f2f2f;
+  line-height: 0;
+  margin: 0.6em 0;
+  font-size: 1rem;
+  padding: 0 1.3em;
+}
+footer a {
+  text-decoration: none;
+}
+.footer-nal > * {
+  flex: 1 50%;
+  margin-right: 1.25em;
+}
+.legal {
+  display: flex;
+  flex-wrap: wrap;
+  color: #999;
+}
+.footer-nal a {
+  color: #999;
+}
+.body-container {
+  padding: 10px;
+  margin: 10px;
+  justify-content: center;
+  align-items: center;
+}
+
+.shimmer-container {
+  padding: 15px;
+  margin: 10px;
+}
+.filter {
+  display: flex;
+  flex-wrap: wrap;
+}
+.TopRating-btn {
+  padding: 0 10px;
+  cursor: pointer;
+}
+.Toprating {
+  padding: 0 20px;
+}
+.search-btn {
+  cursor: pointer;
+}
+.onMind-container {
+  background-color: #ffffff;
+  padding: 8px 4px 12px 8px;
+}
+.onMind-container:hover {
+  cursor: pointer;
+}
+.onmind-img {
+  height: 200px;
+}
+.on-mind {
+  display: flex;
+  position: relative;
+  overflow: hidden;
+  /* justify-content: center; */
+}
+.scroll-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  right: 10px;
+  height: 36px;
+  max-width: max-content;
+  line-height: 0;
+  font-size: 1rem;
+  padding-bottom: 10px;
+}
