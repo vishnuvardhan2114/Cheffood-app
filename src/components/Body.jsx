@@ -1,8 +1,13 @@
-import React from 'react';
-import Cards from './Cards';
-import Shimmer from './Shimmer';
-import { useState, useEffect } from 'react';
-import OnmindCard from './OnmindCard';
+import React from "react";
+import Cards from "./Cards";
+import Shimmer from "./Shimmer";
+import { useState, useEffect } from "react";
+import OnmindCard from "./OnmindCard";
+import {
+  ArrowCircleLeftRounded,
+  ArrowCircleRightRounded,
+} from "@mui/icons-material";
+
 const Body = () => {
   const [Res, setRes] = useState([]);
   const [filterRes, setFilterRes] = useState([]);
@@ -10,17 +15,17 @@ const Body = () => {
   useEffect(() => {
     fetchData();
   }, []);
-  const [searchTerm, setSearchTerm] = useState('');
+  const [searchTerm, setSearchTerm] = useState("");
 
   const fetchData = async () => {
     const data = await fetch(
-      'https://www.swiggy.com/dapi/restaurants/list/v5?lat=9.9375483&lng=78.07802989999999&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING',
+      "https://www.swiggy.com/dapi/restaurants/list/v5?lat=9.9375483&lng=78.07802989999999&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
     );
     const json = await data.json();
     console.log(json);
     setRes(json.data.cards[1].card.card.gridElements.infoWithStyle.restaurants);
     setFilterRes(
-      json.data.cards[1].card.card.gridElements.infoWithStyle.restaurants,
+      json.data.cards[1].card.card.gridElements.infoWithStyle.restaurants
     );
     setOnmind(json.data.cards[0].card.card.imageGridCards.info);
     console.log(json.data.cards[0].card.card.imageGridCards.info);
@@ -33,10 +38,20 @@ const Body = () => {
       <h2>What's on your mind?</h2>
       <div className="on-mind">
         <div className="scroll-btn">
-          <button className="left-btn">left</button>
-          <button className="right-btn">right</button>
+          <button className="left-btn">
+            <ArrowCircleLeftRounded
+              className="left-arrow"
+              sx={{ fontSize: 33 }}
+            />
+          </button>
+          <button className="right-btn">
+            <ArrowCircleRightRounded
+              className="right-arrow"
+              sx={{ fontSize: 33 }}
+            />
+          </button>
         </div>
-        {Onmind.map((banner) => (
+        {Onmind.slice(0, 8).map((banner) => (
           <OnmindCard key={banner.id} bannerData={banner} />
         ))}
       </div>
@@ -57,7 +72,7 @@ const Body = () => {
               const filtered = Res.filter((filterRes) =>
                 filterRes.info.name
                   .toLowerCase()
-                  .includes(searchTerm.toLowerCase()),
+                  .includes(searchTerm.toLowerCase())
               );
               setFilterRes(filtered);
             }}
@@ -69,7 +84,7 @@ const Body = () => {
           <button
             onClick={() => {
               const filtered = Res.filter(
-                (newRes) => newRes.info.avgRating > 4,
+                (newRes) => newRes.info.avgRating > 4
               );
               setRes(filtered);
             }}

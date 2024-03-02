@@ -128,7 +128,7 @@ footer a {
   cursor: pointer;
 }
 .onMind-container {
-  background-color: #ffffff;
+  /* background-color: #ffffff; */
   padding: 8px 4px 12px 8px;
 }
 .onMind-container:hover {
@@ -139,19 +139,35 @@ footer a {
 }
 .on-mind {
   display: flex;
-  position: relative;
+
   overflow: hidden;
-  /* justify-content: center; */
+  justify-content: center;
 }
 .scroll-btn {
   display: flex;
-  align-items: center;
   justify-content: center;
   position: absolute;
   right: 10px;
-  height: 36px;
   max-width: max-content;
   line-height: 0;
   font-size: 1rem;
-  padding-bottom: 10px;
+  padding: 0 10px;
+  gap: 5px;
+  cursor: pointer;
+}
+.left-btn {
+  height: 35px;
+  width: 35px;
+  background-color: #ffffff;
+  cursor: pointer;
+  border-radius: 50px;
+  border: none;
+}
+.right-btn {
+  height: 35px;
+  width: 35px;
+  background-color: #ffffff;
+  cursor: pointer;
+  border-radius: 50px;
+  border: none;
 }
