@@ -16,6 +16,10 @@
   padding: 10px;
   margin: 10px;
 }
+.nav-items ul li a {
+  text-decoration: none;
+  color: black;
+}
 .filter {
   padding: 7px;
   border-radius: 3px;
@@ -86,6 +90,10 @@
   margin: 0.6em 0;
   font-size: 1rem;
   padding: 0 1.3em;
+}
+.cards a {
+  text-decoration: none;
+  color: black;
 }
 footer a {
   text-decoration: none;
@@ -170,4 +178,26 @@ footer a {
   cursor: pointer;
   border-radius: 50px;
   border: none;
+}
+.contact {
+  margin-left: 350px;
+  height: 50vh;
+  width: 50%;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  position: sticky;
+}
+.error-container {
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  font-size: larger;
+  font-weight: bolder;
+}
+.error-container h1 {
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 15px 0;
 }

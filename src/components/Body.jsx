@@ -7,6 +7,7 @@ import {
   ArrowCircleLeftRounded,
   ArrowCircleRightRounded,
 } from "@mui/icons-material";
+import { Link } from "react-router-dom";
 
 const Body = () => {
   const [Res, setRes] = useState([]);
@@ -28,7 +29,6 @@ const Body = () => {
       json.data.cards[1].card.card.gridElements.infoWithStyle.restaurants
     );
     setOnmind(json.data.cards[0].card.card.imageGridCards.info);
-    console.log(json.data.cards[0].card.card.imageGridCards.info);
   };
   console.log(Array.isArray(Onmind)); // Check if Onmind is an array
   return Res.length === 0 ? (
@@ -97,7 +97,10 @@ const Body = () => {
       <h2>Top restaurant chains in Madurai</h2>
       <div className="cards">
         {filterRes.map((res) => (
-          <Cards key={res.info.id} resData={res} />
+          <Link key={res.info.id} to={"/restaurant/" + res.info.id}>
+            {" "}
+            <Cards resData={res} />{" "}
+          </Link>
         ))}
       </div>
     </div>
