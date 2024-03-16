@@ -9,3 +9,6 @@ export const ON_MIND =
 
 export const RES_ITEMS_API =
   "https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=9.9375483&lng=78.07802989999999&restaurantId=";
+
+export const CART_ITEM_PIC =
+  "https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_208,h_208,c_fit/";
