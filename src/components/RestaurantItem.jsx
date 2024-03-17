@@ -11,7 +11,7 @@ import RestaurantItemCard from "./RestaurantItemCard";
 const RestaurantItem = () => {
   const [ResItem, SetResItem] = useState(null);
   const { resId } = useParams();
-
+  console.log(resId);
   useEffect(() => {
     fetchdata();
   }, []);
@@ -34,6 +34,10 @@ const RestaurantItem = () => {
   console.log(
     ResItem?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards[2]?.card?.card
       ?.itemCards
+  );
+  console.log(
+    ResItem?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards[2]?.card?.card
+      ?.categories?.itemCards?.card?.info?.name
   );
   return (
     <div className="restaurantItem-container">

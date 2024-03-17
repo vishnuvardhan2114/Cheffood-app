@@ -36,9 +36,9 @@ const Body = () => {
     );
     const json = await data.json();
     setRes(json.data.cards[1].card.card.gridElements.infoWithStyle.restaurants);
-    console.log(
-      json.data.cards[1].card.card.gridElements.infoWithStyle.restaurants
-    );
+    // console.log(
+    //   json.data.cards[1].card.card.gridElements.infoWithStyle.restaurants
+    // );
     setFilterRes(
       json.data.cards[1].card.card.gridElements.infoWithStyle.restaurants
     );
