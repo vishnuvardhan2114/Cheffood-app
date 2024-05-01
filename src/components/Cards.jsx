@@ -15,7 +15,7 @@ const Cards = (props) => {
           <img
             className="card-icon"
             alt="card-img"
-            src={CDN_URL + cloudinaryImageId}
+            src={CDN_URL + resData?.info?.cloudinaryImageId}
           />
         </div>
         <div className="Carddetail-container">

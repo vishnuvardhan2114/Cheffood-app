@@ -1,6 +1,4 @@
-import React, { useEffect, useState } from "react";
 import Shimmer from "./Shimmer";
-import { RES_ITEMS_API } from "../utils/constants";
 import { useParams } from "react-router-dom";
 import {
   Stars,
@@ -8,37 +6,17 @@ import {
   CurrencyRupeeOutlined,
 } from "@mui/icons-material";
 import RestaurantItemCard from "./RestaurantItemCard";
-const RestaurantItem = () => {
-  const [ResItem, SetResItem] = useState(null);
-  const { resId } = useParams();
-  console.log(resId);
-  useEffect(() => {
-    fetchdata();
-  }, []);
+import useRestaurantItem from "../utils/useRestaurantItem";
 
-  const fetchdata = async () => {
-    const data = await fetch(RES_ITEMS_API + resId);
-    const json = await data.json();
-    SetResItem(json.data);
-  };
+const RestaurantItem = () => {
+  const { resId } = useParams();
+  const ResItem = useRestaurantItem(resId);
+
   if (ResItem === null) return <Shimmer />;
 
-  const {
-    name,
-    avgRating,
-    cuisines,
-    costForTwoMessage,
-    areaName,
-    totalRatingsString,
-  } = ResItem?.cards[0]?.card?.card?.info;
-  console.log(
-    ResItem?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards[2]?.card?.card
-      ?.itemCards
-  );
-  console.log(
-    ResItem?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards[2]?.card?.card
-      ?.categories?.itemCards?.card?.info?.name
-  );
+  const { avgRating, costForTwoMessage, totalRatingsString } =
+    ResItem?.cards[2]?.card?.card?.info;
+
   return (
     <div className="restaurantItem-container">
       <div>
@@ -47,14 +25,20 @@ const RestaurantItem = () => {
             <div className="resHeader-wrapper">
               <div className="Address-wraper">
                 <div aria-hidden="true">
-                  <p className="resName">{name}</p>
-                  <p className="resCuisines">{cuisines.join(", ")}</p>
+                  <p className="resName">
+                    {ResItem?.cards[0]?.card?.card?.text}
+                  </p>
+                  <p className="resCuisines">
+                    {ResItem?.cards[2]?.card?.card?.info?.cuisines.join(", ")}
+                  </p>
                 </div>
                 <div className="resAddress">
-                  <p className="Area">{areaName},</p>
+                  <p className="Area">
+                    {ResItem?.cards[2]?.card?.card?.info?.areaName},
+                  </p>
                   <p className="distance">
                     {
-                      ResItem?.cards[0]?.card?.card?.info?.sla
+                      ResItem?.cards[2]?.card?.card?.info?.sla
                         ?.lastMileTravelString
                     }
                   </p>
@@ -98,7 +82,7 @@ const RestaurantItem = () => {
             >
               <div className="main-content">
                 <h3 className="recommended-title">Recommended </h3>
-                {ResItem?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards[2]?.card?.card?.itemCards.map(
+                {ResItem?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards[2]?.card?.card?.itemCards.map(
                   (item) => (
                     <RestaurantItemCard key={item.id} ResItem={item} />
                   )
@@ -113,16 +97,3 @@ const RestaurantItem = () => {
 };
 
 export default RestaurantItem;
-{
-  /* <h1></h1>
-<h2>{avgRating}</h2>
-<h2>{deliveryTime}</h2>
-<p>
-  {cuisines.join(", ")} - {costForTwoMessage}
-</p>
-<ul>
-  {itemCards.map((item) => (
-    <li key={item.card.info.id}>{item.card.info.name}</li>
-  ))}
-</ul> */
-}

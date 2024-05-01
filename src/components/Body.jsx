@@ -13,6 +13,7 @@ import { Link } from "react-router-dom";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import useOnlineStatus from "../utils/useOnlineStatus";
 
 const Body = () => {
   const settings = {
@@ -32,19 +33,25 @@ const Body = () => {
 
   const fetchData = async () => {
     const data = await fetch(
-      "https://www.swiggy.com/dapi/restaurants/list/v5?lat=9.9375483&lng=78.07802989999999&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
+      "https://www.swiggy.com/dapi/restaurants/list/v5?lat=9.9375483&lng=78.07802989999999&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_"
     );
     const json = await data.json();
     setRes(json.data.cards[1].card.card.gridElements.infoWithStyle.restaurants);
-    // console.log(
-    //   json.data.cards[1].card.card.gridElements.infoWithStyle.restaurants
-    // );
     setFilterRes(
       json.data.cards[1].card.card.gridElements.infoWithStyle.restaurants
     );
     setOnmind(json.data.cards[0].card.card.imageGridCards.info);
   };
-  // console.log(Array.isArray(Onmind)); // Check if Onmind is an array
+
+  const isOnline = useOnlineStatus();
+
+  if (isOnline === false)
+    return (
+      <h1 style={{ marginTop: "65px", paddingTop: "80px" }}>
+        Oops! you look like you're offline,please check your connection!!
+      </h1>
+    );
+
   return Res.length === 0 ? (
     <Shimmer />
   ) : (

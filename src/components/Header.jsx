@@ -6,8 +6,12 @@ import {
   Info,
   Contactless,
   ShoppingCartCheckout,
+  Wifi,
+  WifiOff,
 } from "@mui/icons-material";
+import useOnlineStatus from "../utils/useOnlineStatus";
 const Header = () => {
+  const OnlineStatus = useOnlineStatus();
   return (
     <div>
       <header className="header-container">
@@ -65,6 +69,35 @@ const Header = () => {
                 <ShoppingCartCheckout />
               </div>
               Cart
+            </li>
+            <li>
+              <span style={{ paddingTop: "5px", display: "flex" }}>
+                OnlineStatus:{" "}
+                {OnlineStatus ? (
+                  <div
+                    style={{
+                      paddingRight: "8px",
+                      paddingLeft: "8px",
+                      paddingBottom: "10px",
+                      justifyItems: "center",
+                      display: "flex",
+                    }}
+                  >
+                    <Wifi sx={{ color: "lightgreen" }} />
+                  </div>
+                ) : (
+                  <div
+                    style={{
+                      paddingRight: "8px",
+                      paddingLeft: "8px",
+                      justifyItems: "center",
+                      display: "flex",
+                    }}
+                  >
+                    <WifiOff sx={{ color: "red" }} />
+                  </div>
+                )}
+              </span>
             </li>
           </ul>
         </div>
