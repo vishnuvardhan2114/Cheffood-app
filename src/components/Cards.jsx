@@ -5,13 +5,12 @@ import { green } from "@mui/material/colors";
 
 const Cards = (props) => {
   const { resData } = props;
-  const { cloudinaryImageId, name, cuisines, avgRatingString, areaName } =
-    resData?.info;
+  const { name, cuisines, avgRatingString, areaName } = resData?.info;
   const { slaString } = resData?.info?.sla;
   return (
-    <div className="card-container">
-      <div className="inner-card">
-        <div className="img-container">
+    <div className="w-8 p-2 rounded-md block mx-[32px] my-[16px]">
+      <div className="">
+        <div className="w-6 h-6">
           <img
             className="card-icon"
             alt="card-img"
@@ -37,6 +36,21 @@ const Cards = (props) => {
       </div>
     </div>
   );
+};
+
+export const offersCardLabel = (Cards) => {
+  return (props) => {
+    const { resData } = props;
+    return (
+      <div className="">
+        <label className="absolute bg-green-400 text-white">
+          {resData?.info?.aggregatedDiscountInfoV3?.header}{" "}
+          {resData?.info?.aggregatedDiscountInfoV3?.subHeader}
+        </label>
+        <Cards {...props} />
+      </div>
+    );
+  };
 };
 
 export default Cards;

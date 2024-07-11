@@ -1,14 +1,9 @@
 import React from "react";
-import Cards from "./Cards";
+import Cards, { offersCardLabel } from "./Cards";
 import Shimmer from "./Shimmer";
 import { useState, useEffect } from "react";
 import OnmindCard from "./OnmindCard";
-import {
-  ArrowBack,
-  ArrowForward,
-  Search,
-  StarOutlined,
-} from "@mui/icons-material";
+import { Search, StarOutlined } from "@mui/icons-material";
 import { Link } from "react-router-dom";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
@@ -26,6 +21,7 @@ const Body = () => {
   const [Res, setRes] = useState([]);
   const [filterRes, setFilterRes] = useState([]);
   const [Onmind, setOnmind] = useState([]);
+  const Offerlabel = offersCardLabel(Cards);
   useEffect(() => {
     fetchData();
   }, []);
@@ -42,7 +38,7 @@ const Body = () => {
     );
     setOnmind(json.data.cards[0].card.card.imageGridCards.info);
   };
-
+  console.log(Res);
   const isOnline = useOnlineStatus();
 
   if (isOnline === false)
@@ -119,8 +115,11 @@ const Body = () => {
       <div className="cards">
         {filterRes.map((res) => (
           <Link key={res.info.id} to={"/restaurant/" + res.info.id}>
-            {" "}
-            <Cards resData={res} />{" "}
+            {res.info.aggregatedDiscountInfoV3 ? (
+              <Offerlabel resData={res} />
+            ) : (
+              <Cards resData={res} />
+            )}
           </Link>
         ))}
       </div>
