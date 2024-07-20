@@ -8,9 +8,9 @@ const Cards = (props) => {
   const { name, cuisines, avgRatingString, areaName } = resData?.info;
   const { slaString } = resData?.info?.sla;
   return (
-    <div className="w-8 p-2 rounded-md block mx-[32px] my-[16px]">
-      <div className="">
-        <div className="w-6 h-6">
+    <div className="w-[250px] bg-[#f0f0f0] p-2 rounded-2xl gap-7 mx-8 my-4 hover:bg-slate-200">
+      <div className="inner-card">
+        <div className=" w-[100%] h-[100%] rounded-2xl overflow-hidden">
           <img
             className="card-icon"
             alt="card-img"
@@ -43,11 +43,15 @@ export const offersCardLabel = (Cards) => {
     const { resData } = props;
     return (
       <div className="">
-        <label className="absolute bg-green-400 text-white">
-          {resData?.info?.aggregatedDiscountInfoV3?.header}{" "}
-          {resData?.info?.aggregatedDiscountInfoV3?.subHeader}
-        </label>
-        <Cards {...props} />
+        <div className="absolute">
+          <label className="bg-green-700 p-2 rounded-lg text-white shadow-xl mx-12 hover:bg-green-600">
+            {resData?.info?.aggregatedDiscountInfoV3?.header}
+            {resData?.info?.aggregatedDiscountInfoV3?.subHeader}
+          </label>
+        </div>
+        <div>
+          <Cards {...props} />
+        </div>
       </div>
     );
   };

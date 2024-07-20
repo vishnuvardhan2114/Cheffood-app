@@ -1,47 +1,27 @@
 import React from "react";
-import { CART_ITEM_PIC } from "../utils/constants";
-import { CurrencyRupee } from "@mui/icons-material";
-const RestaurantItemCard = ({ ResItem }) => {
+import { ArrowDownward } from "@mui/icons-material";
+import ItemCards from "./ItemCards";
+
+const RestaurantItemCard = ({ data, showItems, setShowItems }) => {
+  const handleClick = () => {
+    setShowItems();
+  };
   return (
     <div>
-      <div>
-        <div>
-          <div className="style-container">
-            <div className="inner-styleContainer">
-              <div className="inner-style-container">
-                <div className="style-name-container">
-                  <h3 className="name-text">{ResItem?.card?.info?.name}</h3>
-                </div>
-                <div className="image-container">
-                  <div aria-hidden="true">
-                    <div className="cart-img-wrapper">
-                      <img
-                        src={CART_ITEM_PIC + ResItem?.card?.info?.imageId}
-                        className="cart-item-img"
-                        alt={ResItem?.card?.info?.name}
-                      />
-                    </div>
-                  </div>
-                </div>
-                <div className="price-and-offer-wrapper">
-                  <span className="price" aria-hidden="true">
-                    <span className="rupee">
-                      <CurrencyRupee sx={{ fontSize: "small" }} />
-                      {ResItem?.card?.info?.price / 100}
-                    </span>
-                  </span>
-                </div>
-
-                <div className="description">
-                  {ResItem?.card?.info?.description}
-                </div>
-              </div>
-            </div>
-          </div>
+      <div className="w-6/12 bg-gray-50 mx-auto my-4 p-4 shadow-lg text-center ">
+        <div
+          className="flex justify-between cursor-pointer"
+          onClick={handleClick}
+        >
+          <span className="font-bold text-lg">
+            {data.title} ({data.itemCards.length})
+          </span>
+          <span>
+            <ArrowDownward />
+          </span>
         </div>
+        {showItems && <ItemCards items={data.itemCards} />}
       </div>
-      <div className="aboveHeader-cartLine"></div>
-      <hr className="header-line" aria-hidden="true" />
     </div>
   );
 };

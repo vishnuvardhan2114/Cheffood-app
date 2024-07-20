@@ -100,7 +100,6 @@ const Body = () => {
           onClick={() => {
             const filtered = Res.filter((newRes) => newRes.info.avgRating > 4);
             setRes(filtered);
-            // console.log(filtered);
           }}
           className="TopRating-btn"
         >
@@ -112,7 +111,7 @@ const Body = () => {
       </div>
       <h2 className="res-title">Top restaurant chains in Madurai</h2>
 
-      <div className="cards">
+      <div className="flex flex-wrap m-7 pt-6 ">
         {filterRes.map((res) => (
           <Link key={res.info.id} to={"/restaurant/" + res.info.id}>
             {res.info.aggregatedDiscountInfoV3 ? (

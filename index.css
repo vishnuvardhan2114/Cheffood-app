@@ -16,7 +16,7 @@
   display: flex;
   justify-content: space-between;
   box-shadow: 0 15px 40px -20px rgba(40, 44, 63, 0.15);
-  position: fixed;
+  position: sticky;
   top: 0;
   left: 0;
   right: 0;
@@ -158,13 +158,14 @@
   display: flex;
   flex-wrap: wrap;
   font-family: Basis_Grotesque_Pro, arial, Helvetica Neue, sans-serif;
-  margin-right: 30px;
+  margin-right: 25px;
   margin-left: 8%;
   align-items: start;
 }
 .cuisines-container {
   display: flex;
   flex-wrap: wrap;
+  overflow: hidden;
   margin-top: 3%;
   gap: 2px;
   font-family: Basis_Grotesque_Pro, arial, Helvetica Neue, sans-serif;
