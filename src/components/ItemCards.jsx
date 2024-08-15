@@ -1,21 +1,21 @@
-import React, { useState } from "react";
+import React from "react";
+import { useDispatch } from "react-redux";
+import { addItem } from "../utils/cartSlice.js";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import { CDN_URL } from "../utils/constants";
 
 const ItemCards = ({ items }) => {
-  const [cart, setCart] = useState({});
-
-  const addToCart = (itemId) => {
-    setCart((prevCart) => ({
-      ...prevCart,
-      [itemId]: (prevCart[itemId] || 0) + 1,
-    }));
+  const dispatch = useDispatch();
+  const addToCart = (item) => {
+    dispatch(addItem(item));
+    toast.success("Added to Cart");
   };
 
   return (
     <div>
       {items.map((item) => {
         const itemId = item.card.info.id;
-        const itemCartCount = cart[itemId] || 0;
 
         return (
           <div key={itemId} className="p-2 m-4 border-b-2 flex justify-between">
@@ -37,9 +37,9 @@ const ItemCards = ({ items }) => {
               <div className="absolute">
                 <button
                   className="p-2 mx-14 mt-14 bg-white font-bold shadow-lg rounded-lg"
-                  onClick={() => addToCart(itemId)}
+                  onClick={() => addToCart(item)}
                 >
-                  Add {itemCartCount === 0 ? "+" : `+${itemCartCount}`}
+                  Add+
                 </button>
               </div>
               <img
@@ -51,6 +51,7 @@ const ItemCards = ({ items }) => {
           </div>
         );
       })}
+      <ToastContainer />
     </div>
   );
 };

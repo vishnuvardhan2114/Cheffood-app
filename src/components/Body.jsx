@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import Cards, { offersCardLabel } from "./Cards";
 import Shimmer from "./Shimmer";
 import { useState, useEffect } from "react";
@@ -9,6 +9,7 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import useOnlineStatus from "../utils/useOnlineStatus";
+import UserContext from "../utils/UserContext";
 
 const Body = () => {
   const settings = {
@@ -27,6 +28,8 @@ const Body = () => {
   }, []);
   const [searchTerm, setSearchTerm] = useState("");
 
+  const { setUserName, logedInUser } = useContext(UserContext);
+
   const fetchData = async () => {
     const data = await fetch(
       "https://www.swiggy.com/dapi/restaurants/list/v5?lat=9.9375483&lng=78.07802989999999&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_"
@@ -38,7 +41,7 @@ const Body = () => {
     );
     setOnmind(json.data.cards[0].card.card.imageGridCards.info);
   };
-  console.log(Res);
+  // console.log(Res);
   const isOnline = useOnlineStatus();
 
   if (isOnline === false)
@@ -94,6 +97,15 @@ const Body = () => {
             </button>
           </div>
         </div>
+      </div>
+      <div>
+        <label>UserName:</label>
+        <input
+          placeholder="Enter your name"
+          className="mx-2 bg-gray-300 p-3"
+          value={logedInUser}
+          onChange={(e) => setUserName(e.target.value)}
+        />
       </div>
       <div className="Top-rating">
         <button

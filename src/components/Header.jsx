@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 import { LOGO_URL } from "../utils/constants";
 import { Link } from "react-router-dom";
 import {
@@ -10,8 +10,13 @@ import {
   WifiOff,
 } from "@mui/icons-material";
 import useOnlineStatus from "../utils/useOnlineStatus";
+import UserContext from "../utils/UserContext";
+import { useSelector } from "react-redux";
 const Header = () => {
   const OnlineStatus = useOnlineStatus();
+  const [loginbutton, setLoginButton] = useState("Logout");
+  const { logedInUser } = useContext(UserContext);
+  const cartItems = useSelector((store) => store.cart.items);
   return (
     <div>
       <header className="header-container">
@@ -58,18 +63,7 @@ const Header = () => {
               </div>
               <Link to={"/contact"}>Contact</Link>
             </li>
-            <li style={{ paddingTop: "13px" }}>
-              <div
-                style={{
-                  paddingRight: "8px",
-                  justifyItems: "center",
-                  display: "flex",
-                }}
-              >
-                <ShoppingCartCheckout />
-              </div>
-              Cart
-            </li>
+
             <li>
               <span style={{ paddingTop: "5px", display: "flex" }}>
                 OnlineStatus:{" "}
@@ -98,6 +92,36 @@ const Header = () => {
                   </div>
                 )}
               </span>
+
+              <button
+                className="px-6 mx-8 bg-green-600 rounded-lg"
+                onClick={() => {
+                  loginbutton === "Logout"
+                    ? setLoginButton("Login")
+                    : setLoginButton("Logout");
+                }}
+              >
+                {loginbutton === "Logout" ? (
+                  <Link to={"/about"}> {loginbutton} </Link>
+                ) : (
+                  <Link to={"/"}>{loginbutton}</Link>
+                )}
+              </button>
+              <h1 className="text-sm mt-2 pr-3">{logedInUser}</h1>
+            </li>
+            <li style={{ paddingTop: "13px" }}>
+              <div
+                style={{
+                  paddingRight: "8px",
+                  justifyItems: "center",
+                  display: "flex",
+                }}
+              >
+                <Link to={"/cart"}>
+                  {" "}
+                  <ShoppingCartCheckout /> {cartItems.length}
+                </Link>
+              </div>
             </li>
           </ul>
         </div>
